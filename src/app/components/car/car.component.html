@@ -1,0 +1,71 @@
+<table class="table" width="100%" style="text-align: center">
+  <thead>
+  <tr>
+    <th rowspan="2">Name</th>
+    <th rowspan="2">Model</th>
+    <th rowspan="2">Options</th>
+    <th colspan="2">Color</th>
+  </tr>
+  <tr>
+    <th>General</th>
+    <th>Inside</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{name}}</td>
+    <td>{{model}}</td>
+    <td>{{options}}</td>
+    <td>{{color.general}}</td>
+    <td>{{color.inside}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="container">
+  <br>
+  <h4>
+    <mark>Автоиобиль:</mark>
+    <small>{{name}}</small>
+    {{model}}
+  </h4>
+  Характеристики автомобиля:
+  <div class="alert alert-success">
+    <ul>
+      <li>Цвет основной: {{color.general}}</li>
+      <li>Цвет внутри: {{color.inside}}</li>
+    </ul>
+  </div>
+  <button (click)="showEdit()" class="btn btn-info">редактирование</button>
+  <div><br></div>
+
+  <form *ngIf="isEdit" class="form">
+    <div class="form-group">
+      <input class="form" type="text" placeholder="производитель" [(ngModel)]="name" name="name"> <br>
+      <input class="form" type="text" placeholder="модель" [(ngModel)]="model" name="model"> <br>
+      <input class="form" type="text" placeholder="цает основной" [(ngModel)]="color.general" name="colorG"> <br>
+      <input class="form" type="text" placeholder="цвет внутри" [(ngModel)]="color.inside" name="colorI"> <br>
+    </div>
+  </form>
+  Дополнительные опции:
+  <div class="alert alert-info">
+    <ul>
+      <li *ngFor="let opt of options ">{{opt}}
+        <button (click)=deleteOpt(opt) class="btn btn-danger btn-sm">x</button>
+      </li>
+    </ul>
+  </div>
+  <button class="btn btn-success" (click)="carSelect('VAZ', '2101', 'черный', 'белый', ['абс', 'ремень безопасности'])">
+    VAZ
+  </button>
+  <button class="btn btn-success" (click)="carSelect('ZAZ', 'крутой', 'металик', 'хром', ['збс', 'автопилот'])">ZAZ
+  </button>
+  <div><br></div>
+
+  <form (submit)="addOption(opt.value)">
+    <input type="text" placeholder="enter new option" #opt> <br> <br>
+    <button class="btn btn-success" type="submit">добавить</button>
+  </form>
+
+</div>
+
