@@ -12,6 +12,7 @@ export class CarComponent implements OnInit {
   color: Color;
   options: string[];
   isEdit = false;
+  isInfo = false;
 
   constructor() {}
 
@@ -52,6 +53,9 @@ export class CarComponent implements OnInit {
   }
   showEdit(): void {
     this.isEdit = !this.isEdit;
+  }
+  showInfo(): void {
+    this.isInfo = !this.isInfo;
   }
 
 }
